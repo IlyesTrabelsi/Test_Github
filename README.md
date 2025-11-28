@@ -1,4 +1,4 @@
-Poll Charts — Système de sondages interactifs avec Chart.js
+**********Poll Charts — Système de sondages interactifs avec Chart.js**********
 Ce projet est une application web qui affiche des sondages interactifs accompagnés de graphiques générés automatiquement avec Chart.js.
 L’objectif est de proposer une interface simple où chaque sondage affiche ses options, ses votes en pourcentage, ainsi qu’un graphique placé à droite du bloc.
 Technologies utilisées : HTML / CSS / JavaScript / Chart.js / DOM API / GitHub Pages
