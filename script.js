@@ -78,3 +78,64 @@ document.addEventListener("DOMContentLoaded", () => {
             submitBtn.style.fontSize = "15px";
 
             poll.insertAdjacentElement("afterend", submitBtn);
+                        submitBtn.addEventListener("click", () => {
+                if (der_chois === -1) {
+                    alert("Please choose an option before submitting!");
+                    return;
+                }
+                isSub = true;
+                submitBtn.textContent = "Vote Submitted ✅";
+                submitBtn.style.backgroundColor = "gray";
+                submitBtn.style.cursor = "default";
+
+                options.forEach(op => {
+                    op.style.pointerEvents = "none";
+                    op.style.opacity = "0.8";
+                });
+            });
+
+            const container = document.createElement("div");
+            container.style.display = "flex";
+            container.style.alignItems = "flex-start";
+
+            poll.parentNode.insertBefore(container, poll);
+            container.appendChild(poll);
+
+            const canvas = document.createElement("canvas");
+            canvas.width = 300;
+            canvas.height = 200;
+            canvas.style.marginLeft = "200px";
+            container.appendChild(canvas);
+            const labels = Array.from(options).map(o => {
+                return o.querySelector(".text").textContent;
+            });
+
+            const ctx = canvas.getContext("2d");
+
+            const voteChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Vote Percentage",
+                        data: pours,
+                        backgroundColor: ["#4caf50", "#2196f3", "#ff9800", "#9c27b0"]
+                    }]
+                },
+                options: {
+                    indexAxis: "y",
+                    responsive: false,
+                    scales: {
+                        x: { min: 0, max: 100 }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            poll.voteChart = voteChart;
+
+        });
+    };
+});
